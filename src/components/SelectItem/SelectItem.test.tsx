@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 
 import OptionItem from './OptionItem';

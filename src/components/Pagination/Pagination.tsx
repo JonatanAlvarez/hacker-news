@@ -25,14 +25,14 @@ const Pagination =  ({ currentPage=1, pagesSize=10, pagesShow=10, total=0, onCha
 
     if (start >= 2) {
       elements.push(
-        <button onClick={() => onChange(currentPage - (numbersShow / 2) - 1)}>...</button>
+        <button key="before" onClick={() => onChange(currentPage - (numbersShow / 2) - 1)}>...</button>
       )
     }
 
     for(let page=0; page < numbersShow && page + start <= totalPages; page++) {
       elements.push(
         <button
-          key={page}
+          key={page + start}
           className={cx({'active': page + start === currentPage})}
           onClick={() => onChange(page + start)}
         >
@@ -43,7 +43,7 @@ const Pagination =  ({ currentPage=1, pagesSize=10, pagesShow=10, total=0, onCha
 
     if (start + numbersShow < totalPages) {
       elements.push(
-        <button onClick={() => onChange(currentPage + (numbersShow / 2))}>...</button>
+        <button key="after" onClick={() => onChange(currentPage + (numbersShow / 2))}>...</button>
       )
     }
 
@@ -53,11 +53,13 @@ const Pagination =  ({ currentPage=1, pagesSize=10, pagesShow=10, total=0, onCha
   return (
     <div className="Pagination">
       <button
+        key="back"
         className={cx('back', {'show': currentPage > 1})}
         onClick={() => onChange(currentPage - 1)}
       />
       { renderElements() }
       <button
+        key="next"
         className={cx('next', {'show': currentPage < totalPages - 1})}
         onClick={() => onChange(currentPage + 1)}
       />
