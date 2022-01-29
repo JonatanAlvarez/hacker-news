@@ -1,4 +1,6 @@
 .SelectItem {
+  position: relative;
+
   .selected {
     position: relative;
     display: flex;
@@ -25,6 +27,7 @@
   }
 
   .options {
+    position: absolute;
     width: 240px;
     max-width: 100%;
     height: 139px;
@@ -32,6 +35,7 @@
     background-color: #fff;
     padding: 0;
     margin: 0;
+    z-index: 100;
 
     li {
       display: flex;

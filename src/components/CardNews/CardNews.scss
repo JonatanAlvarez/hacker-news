@@ -4,10 +4,17 @@
   border: solid 1px rgba(151, 151, 151, 0.8);
   background-color: #fff;
   height: 90px;
+  cursor: default;
+  transition: opacity 0.3s;
+
+  &:hover {
+    opacity: 0.5;
+  }
 
   .content {
     flex: 1 1 100%;
-    padding: 14px 26px;
+    padding: 14px 26px 5px;
+    overflow: auto;
 
     small {
       display: inline-block;

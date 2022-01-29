@@ -1,0 +1,11 @@
+.SectionNews {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 36px 0 96px;
+  column-gap: 40px;
+  row-gap: 30px;
+
+  @media (max-width: 678px) {
+    grid-template-columns: 1fr;
+  }
+}

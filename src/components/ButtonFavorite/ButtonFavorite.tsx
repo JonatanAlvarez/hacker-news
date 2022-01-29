@@ -15,7 +15,10 @@ const ButtonFavorite = ({active = false, onClick = () => {}}: Props) => (
     className={
       cx('ButtonFavorite', {'active': active})
     }
-    onClick={() => onClick(!active)}
+    onClick={(e) => {
+      e.stopPropagation();
+      onClick(!active);
+    }}
   >
     { active ? <FavoriteActive /> : <Favorite /> }
   </button>

@@ -8,10 +8,10 @@ type Props = {
   publishedDate: string,
   author: string,
   title: string,
-  comment: string
+  onClick?: () => void
 }
 
-const CardNews = ({publishedDate, title = '', comment = '', author}: Props) => {
+const CardNews = ({publishedDate, title = '', author, onClick = () => {}}: Props) => {
   const [active, setActive] = useState(false);
   
   // rederDate - if the date is the current day, calculates the elapsed time so far.
@@ -35,10 +35,10 @@ const CardNews = ({publishedDate, title = '', comment = '', author}: Props) => {
   }
 
   return (
-    <div className="CardNews">
+    <div className="CardNews" onClick={onClick}>
       <div className="content">
         <small><Time /> { renderDate() } by { author }</small>
-        <p>{ title || comment }</p>
+        <p>{ title }</p>
       </div>
       <div className="action">
         <ButtonFavorite active={active} onClick={setActive} />
