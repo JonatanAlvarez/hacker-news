@@ -10,17 +10,15 @@ type Props = {
   onClick?: (active: boolean) => void
 };
 
-const ButtonFavorite = ({active = false, onClick = () => {}}: Props) => {
-  return (
-    <button
-      className={
-        cx('ButtonFavorite', {'active': active})
-      }
-      onClick={() => onClick(!active)}
-    >
-      { active ? <FavoriteActive /> : <Favorite /> }
-    </button>
-  );
-};
+const ButtonFavorite = ({active = false, onClick = () => {}}: Props) => (
+  <button
+    className={
+      cx('ButtonFavorite', {'active': active})
+    }
+    onClick={() => onClick(!active)}
+  >
+    { active ? <FavoriteActive /> : <Favorite /> }
+  </button>
+);
 
 export default ButtonFavorite;
