@@ -29,16 +29,16 @@ const SelectItem = ({ value, placeholder = 'Select Item', children, onChange = (
   }
 
   return (
-    <div className="SelectItem">
+    <div className="SelectItem" role="combobox" aria-expanded={opened} aria-controls="SelectItem__options">
       <div className="selected" onClick={() => { setOpened(!opened) }}>
         { renderItemSelected() }
       </div>
       {
         opened && 
-        <ul className="options">
+        <ul id="SelectItem__options" className="options" role="listbox">
           {
-            children.map((child) => {
-              return cloneElement(child, { onClick:handdleSelected });
+            children.map((child, index) => {
+              return cloneElement(child, { key: index, onClick: handdleSelected });
             })
           }
         </ul>
