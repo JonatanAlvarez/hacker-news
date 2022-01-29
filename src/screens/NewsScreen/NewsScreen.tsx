@@ -8,9 +8,11 @@ import logoReact from '../../assets/react.png';
 import logoAngular from '../../assets/angular.png';
 import logoVuejs from '../../assets/vuejs.png';
 import CardNews from "../../components/CardNews/CardNews";
+import Pagination from "../../components/Pagination/Pagination";
 
 const NewsScreen = () => {
   const [selectedNews, setSelectedNews] = useState('');
+  const [page, setPage] = useState(1);
 
   return (
     <div className="NewsScreen max-container">
@@ -33,6 +35,7 @@ const NewsScreen = () => {
           comment=""
         />
       </section>
+      <Pagination currentPage={page} total={20} pagesShow={12} onChange={setPage} />
     </div>
   );
 };
