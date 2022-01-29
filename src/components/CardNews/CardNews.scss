@@ -1,0 +1,41 @@
+.CardNews {
+  display: flex;
+  border-radius: 6px;
+  border: solid 1px rgba(151, 151, 151, 0.8);
+  background-color: #fff;
+  height: 90px;
+
+  .content {
+    flex: 1 1 100%;
+    padding: 14px 26px;
+
+    small {
+      display: inline-block;
+      font-size: 11px;
+      color: #767676;
+
+      svg {
+        vertical-align: -4px;
+        margin-right: 8px;
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    p {
+      margin: 6px 0 0;
+      font-size: 14px;
+      font-weight: 500;
+      color: #6b6b6b;
+      line-height: 1.43;
+    }
+  }
+
+  .action {
+    flex: 0 1 68px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(96, 96, 96, 0.06);
+  }
+}

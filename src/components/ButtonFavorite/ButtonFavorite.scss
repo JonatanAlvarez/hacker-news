@@ -1,0 +1,43 @@
+.ButtonFavorite {
+  border: none;
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
+  animation: heartbeat2 0.3s;
+
+  svg {
+    width: 24px;
+    height: 22px;
+    fill: black;
+  }
+
+  &.active {
+    animation: heartbeat 0.3s;
+  }
+
+  @keyframes heartbeat {
+    0%
+    {
+      opacity: 0.3;
+      transform: scale( .75 );
+    }
+    100%
+    {
+      opacity: 1;
+      transform: scale( 1 );
+    }
+  }
+
+  @keyframes heartbeat2 {
+    0%
+    {
+      opacity: 0.3;
+      transform: scale( .75 );
+    }
+    100%
+    {
+      opacity: 1;
+      transform: scale( 1 );
+    }
+  }
+}
