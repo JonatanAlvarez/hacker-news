@@ -1,0 +1,52 @@
+.DefaultLayout {
+  header {
+    display: flex;
+    align-items: center;
+    height: 114px;
+    box-shadow: 0 1px 4px 0 rgba(0, 21, 41, 0.12);
+    background-image: linear-gradient(to bottom, #ececec -32%, #fff 124%);
+    padding: 20px;
+
+    h1 {
+      font-size: 28px;
+      color: #3b3b3b;
+      text-transform: uppercase;
+      padding-top: 2px;
+    }
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 70px 20px 63px;
+    justify-content: center;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 98px;
+      height: 31px;
+      padding: 5px;
+      border-radius: 2px;
+      border: solid 1px #d6d6d6;
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      color: #606060;
+
+      &.active {
+        border-color: #1797ff;
+        color: #1797ff;
+
+        &:first-child {
+          border-right-color: #d6d6d6;
+        }
+
+        &:last-child {
+          border-left-color: #d6d6d6;
+        }
+      }
+    }
+  }
+}

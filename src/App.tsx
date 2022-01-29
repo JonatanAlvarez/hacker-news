@@ -1,9 +1,7 @@
-import './App.scss';
+import { AppRouter } from "./routers/AppRouter";
 
 function App() {
-  return (
-    <div className="App"></div>
-  );
+  return <AppRouter />;
 }
 
 export default App;
