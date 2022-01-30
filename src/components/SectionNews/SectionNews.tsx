@@ -3,6 +3,7 @@ import CardNews from "../../components/CardNews/CardNews";
 import './SectionNews.scss';
 
 export type Post = {
+  objectID: string,
   author: string,
   story_title: string,
   story_url: string,
@@ -25,7 +26,7 @@ const SectionNews = ({ items }: Props) => {
           if (item.story_title) {
             return (
               <CardNews
-                key={'news' + i}
+                key={item.objectID}
                 publishedDate={item.created_at}
                 author={item.author}
                 title={item.story_title}
@@ -34,7 +35,7 @@ const SectionNews = ({ items }: Props) => {
             );
           }
 
-          return <></>;
+          return null;
         })
       }
     </section>

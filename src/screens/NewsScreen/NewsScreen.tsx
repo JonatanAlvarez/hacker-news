@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
 
 import OptionItem from "../../components/SelectItem/OptionItem";
 import SelectItem from "../../components/SelectItem/SelectItem";
@@ -22,55 +23,34 @@ type AlgoliaResults = {
 
 const NewsScreen = () => {
   const navigate = useNavigate();
-  const { query, page: currentPage } = useParams();
-  const [selectedNews, setSelectedNews] = useState(query || '');
-  const [page, setPage] = useState(parseInt(currentPage || '1'));
-  const [state, setState] = useState({
-    isLoaded: false,
-    data: {} as AlgoliaResults,
-    error: null
-  });
-  
-  useEffect(() => {
-    setState((state) => ({
+  const { query, page } = useParams();
+  const [state, setState] = useState({ query: query || '', page: parseInt(page || '1') });
+  const { isLoaded, data, error } = useFetch<AlgoliaResults>(`https://hn.algolia.com/api/v1/search_by_date?query=${state.query}&hitsPerPage=8&page=${state.page - 1}`);
+
+  const handlerSelect = (query: string) => {
+    setState({
       ...state,
-      isLoaded: false
-    }));
+      query,
+      page: 1
+    });
 
-    fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${selectedNews}&hitsPerPage=8&page=${page - 1}`)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setState((state) => ({
-            ...state,
-            isLoaded: true,
-            data: result
-          }));
-        },
-        (error) => {
-          setState((state) => ({
-            ...state,
-            isLoaded: true,
-            error
-          }));
-        }
-      )
-  }, [selectedNews, page]);
-
-  const handlerSelect = (news: string) => {
-    setSelectedNews(news);
-    setPage(1);
-    navigate({ pathname: `/${news}/1` });
+    navigate({ pathname: `/${query}/1` });
   };
 
   const handlerPagination = (page: number) => {
-    setPage(page);
-    navigate({ pathname: `/${selectedNews}/${page}` });
+    setState({
+      ...state,
+      page
+    });
+    if (state.query !== '') {
+      navigate({ pathname: `/${state.query}/${page}` });
+    }
+    navigate({ pathname: `/${page}` });
   };
 
   return (
     <div className="NewsScreen max-container">
-      <SelectItem value={selectedNews} placeholder="Select your news" onChange={handlerSelect}>
+      <SelectItem value={state.query} placeholder="Select your news" onChange={handlerSelect}>
         <OptionItem value="angular">
           <><img src={logoAngular} alt="Logo" /> Angular</>
         </OptionItem>
@@ -82,12 +62,12 @@ const NewsScreen = () => {
         </OptionItem>
       </SelectItem>
       
-      { state.error && <p>{ state.error }</p>}
-      { state.isLoaded ? <SectionNews items={ state.data.hits }/> : <Loader /> }
+      { error && <p>{ error }</p>}
+      { isLoaded ? <SectionNews items={ data.hits }/> : <Loader /> }
       
       <Pagination
-        currentPage={page}
-        total={state.data.hitsPerPage * state.data.nbPages}
+        currentPage={state.page}
+        total={data.hitsPerPage * data.nbPages}
         pagesShow={12}
         pagesSize={8}
         onChange={handlerPagination}
