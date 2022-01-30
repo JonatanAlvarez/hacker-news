@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
 import OptionItem from "../../components/SelectItem/OptionItem";
 import SelectItem from "../../components/SelectItem/SelectItem";
 
@@ -19,14 +21,16 @@ type AlgoliaResults = {
 }
 
 const NewsScreen = () => {
-  const [selectedNews, setSelectedNews] = useState('');
+  const navigate = useNavigate();
+  const { query, page: currentPage } = useParams();
+  const [selectedNews, setSelectedNews] = useState(query || '');
+  const [page, setPage] = useState(parseInt(currentPage || '1'));
   const [state, setState] = useState({
     isLoaded: false,
     data: {} as AlgoliaResults,
     error: null
   });
-  const [page, setPage] = useState(1);
-
+  
   useEffect(() => {
     setState((state) => ({
       ...state,
@@ -53,9 +57,20 @@ const NewsScreen = () => {
       )
   }, [selectedNews, page]);
 
+  const handlerSelect = (news: string) => {
+    setSelectedNews(news);
+    setPage(1);
+    navigate({ pathname: `/${news}/1` });
+  };
+
+  const handlerPagination = (page: number) => {
+    setPage(page);
+    navigate({ pathname: `/${selectedNews}/${page}` });
+  };
+
   return (
     <div className="NewsScreen max-container">
-      <SelectItem value={selectedNews} placeholder="Select your news" onChange={setSelectedNews}>
+      <SelectItem value={selectedNews} placeholder="Select your news" onChange={handlerSelect}>
         <OptionItem value="angular">
           <><img src={logoAngular} alt="Logo" /> Angular</>
         </OptionItem>
@@ -66,7 +81,8 @@ const NewsScreen = () => {
           <><img src={logoVuejs} alt="Logo" /> Vuejs</>
         </OptionItem>
       </SelectItem>
-
+      
+      { state.error && <p>{ state.error }</p>}
       { state.isLoaded ? <SectionNews items={ state.data.hits }/> : <Loader /> }
       
       <Pagination
@@ -74,7 +90,7 @@ const NewsScreen = () => {
         total={state.data.hitsPerPage * state.data.nbPages}
         pagesShow={12}
         pagesSize={8}
-        onChange={setPage}
+        onChange={handlerPagination}
       />
     </div>
   );

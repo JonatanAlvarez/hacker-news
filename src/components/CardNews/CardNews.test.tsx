@@ -8,25 +8,11 @@ describe("Testing CardNews Component", () => {
     const props = {
       publishedDate: "2022-01-28T14:05:58.000Z",
       author: "Stephen King",
-      title: "Secret Window",
-      comment: ''
+      title: "Secret Window"
     }
     const { getByText } = render(<CardNews { ...props } />);
 
     expect(getByText(/Stephen King/i)).toBeInTheDocument();
     expect(getByText(/Secret Window/i)).toBeInTheDocument();
-  });
-
-  test('renders author and comment', () => {
-    const props = {
-      publishedDate: "2022-01-28T14:05:58.000Z",
-      author: "Stephen King",
-      title: "",
-      comment: "Hola mundo!"
-    }
-    const { getByText } = render(<CardNews { ...props } />);
-
-    expect(getByText(/Stephen King/i)).toBeInTheDocument();
-    expect(getByText(/Hola mundo!/i)).toBeInTheDocument();
   });
 });

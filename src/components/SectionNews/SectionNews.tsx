@@ -25,7 +25,7 @@ const SectionNews = ({ items }: Props) => {
           if (item.story_title) {
             return (
               <CardNews
-                key={i}
+                key={'news' + i}
                 publishedDate={item.created_at}
                 author={item.author}
                 title={item.story_title}
