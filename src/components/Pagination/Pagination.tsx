@@ -12,7 +12,7 @@ type Props = {
 
 const Pagination =  ({ currentPage=1, pagesSize=10, pagesShow=10, total=0, onChange }: Props) => {
   const numbersShow = pagesShow - 2;
-  const totalPages = total / pagesSize;
+  const totalPages = Math.ceil(total / pagesSize);
 
   // renderElements - shows the controls according to the maximum number that can be displayed
   const renderElements = () => {

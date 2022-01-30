@@ -1,16 +1,7 @@
-.NewsScreen {
+.MyFaves {
   display: flex;
   flex-direction: column;
   padding-bottom: 98px;
-
-  .SelectItem {
-    img {
-      width: 24px;
-      height: 24px;
-      object-fit: contain;
-      margin-right: 13px;
-    }
-  }
 
   .SectionNews {
     min-height: 582px;

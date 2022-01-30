@@ -35,7 +35,7 @@ const NewsScreen = () => {
     } else {
       navigate({ pathname: `/${state.page}` });
     }
-  }, [state]);
+  }, [state, navigate]);
 
   const handlerSelect = (query: string) => {
     setState({

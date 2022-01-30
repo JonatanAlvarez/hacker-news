@@ -1,6 +1,7 @@
 .SectionNews {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  align-content: start;
   padding: 36px 0 96px;
   column-gap: 40px;
   row-gap: 30px;

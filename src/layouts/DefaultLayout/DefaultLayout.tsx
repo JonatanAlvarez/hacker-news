@@ -12,7 +12,7 @@ const DefaultLayout = () => {
       </header>
       <nav>
         <NavLink to={'/' + ( query ? '' : page) }>All</NavLink>
-        <NavLink to="/my-faves">My faves</NavLink>
+        <NavLink to="/my-faves/1">My faves</NavLink>
       </nav>
       <main>
         <Outlet />

@@ -19,6 +19,7 @@
     height: 32px;
     font-size: 14px;
     font-weight: normal;
+    transition: all 0.3s;
 
     &.active {
       background-color: #1890ff;
