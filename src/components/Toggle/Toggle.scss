@@ -1,0 +1,19 @@
+.Toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  appearance: none;
+  border-radius: 15px;
+  border: 1px solid #f2f2f2;
+  height: 32px;
+  background: #f2f2f2;
+  color: lightgray;
+  padding: 5px 15px;
+  transition: all 0.3s;
+
+  &.active {
+    background: #1797ff;
+    color: #fff;
+    border-color: #2e2e2e;
+  }
+}

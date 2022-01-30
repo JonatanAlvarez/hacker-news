@@ -1,5 +1,5 @@
-<svg version="1.1" id="L6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-  viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" width="100px" height="582px" style="margin: auto;">
+<svg class="loader" version="1.1" id="L6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+  viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" style="margin: auto;">
    <rect fill="none" stroke="#1890ff" stroke-width="4" x="25" y="25" width="50" height="50">
   <animateTransform
      attributeName="transform"

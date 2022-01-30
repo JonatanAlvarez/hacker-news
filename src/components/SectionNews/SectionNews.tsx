@@ -18,7 +18,7 @@ type Props = {
 
 const SectionNews = ({ items, onChange = () => {} }: Props) => {
   const openNewTab = (url: string) => {
-    window.open(url, '_blank');
+    if (url) window.open(url, '_blank');
   }
 
   const handlerFavorite = (item: Post, isFavorite: boolean) => {

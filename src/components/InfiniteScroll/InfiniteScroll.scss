@@ -1,0 +1,45 @@
+.InfiniteScroll {
+  display: flex;
+  justify-content: center;
+  
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    appearance: none;
+    border: none;
+    height: 50px;
+    width: 100%;
+    margin: auto;
+    padding: 15px;
+    background-color: #fff;
+    border: 2px solid #1797ff;
+    font-size: 16px;
+    font-weight: 500;
+    color: #606060;
+    transition: all 0.3s;
+    opacity: 0;
+    animation: fade 0.6s forwards;
+    
+
+    &:hover {
+      background: #1797ff;
+      color: #fff;
+    }
+  }
+
+  > .loader {
+    width: 75px;
+    height: 75px;
+    margin: auto;
+    opacity: 0;
+    animation: fade 0.6s forwards;
+  }
+
+  @keyframes fade {
+    to {
+      opacity: 1;
+    }
+  }
+}
