@@ -8,11 +8,19 @@ type Props = {
   publishedDate: string,
   author: string,
   title: string,
-  onClick?: () => void
+  isFavorite?: boolean,
+  onClick?: () => void,
+  onFavorite?: (isFavorite: boolean) => void
 }
 
-const CardNews = ({publishedDate, title = '', author, onClick = () => {}}: Props) => {
-  const [active, setActive] = useState(false);
+const CardNews = ({
+  publishedDate,
+  title = '',
+  author,
+  isFavorite = false,
+  onClick = () => {},
+  onFavorite = () => {}
+}: Props) => {
   
   // rederDate - if the date is the current day, calculates the elapsed time so far.
   const renderDate = () => {
@@ -41,7 +49,7 @@ const CardNews = ({publishedDate, title = '', author, onClick = () => {}}: Props
         <p>{ title }</p>
       </div>
       <div className="action">
-        <ButtonFavorite active={active} onClick={setActive} />
+        <ButtonFavorite active={isFavorite} onClick={onFavorite} />
       </div>
     </div>
   )

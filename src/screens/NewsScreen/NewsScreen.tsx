@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import favoriteReducer, { init, FavoriteType } from "../../reducers/favoriteReducer";
 
 import OptionItem from "../../components/SelectItem/OptionItem";
 import SelectItem from "../../components/SelectItem/SelectItem";
@@ -26,26 +27,47 @@ const NewsScreen = () => {
   const { query, page } = useParams();
   const [state, setState] = useState({ query: query || '', page: parseInt(page || '1') });
   const { isLoaded, data, error } = useFetch<AlgoliaResults>(`https://hn.algolia.com/api/v1/search_by_date?query=${state.query}&hitsPerPage=8&page=${state.page - 1}`);
+  const [favoriteItems, dispatchFavorites] = useReducer(favoriteReducer, [], init);
+
+  useEffect(() => {
+    if (state.query !== '') {
+      navigate({ pathname: `/${state.query}/${state.page}` });
+    } else {
+      navigate({ pathname: `/${state.page}` });
+    }
+  }, [state]);
 
   const handlerSelect = (query: string) => {
     setState({
-      ...state,
       query,
       page: 1
     });
+  };
 
-    navigate({ pathname: `/${query}/1` });
+  const handlerNews = (news: Post) => {
+    dispatchFavorites({
+      type: news.isFavorite? FavoriteType.ADD : FavoriteType.DELETE,
+      payload: news
+    })
   };
 
   const handlerPagination = (page: number) => {
-    setState({
+    setState((state) => ({
       ...state,
       page
+    }));
+  };
+
+  const markFavoritePosts = (posts: Post[]) => {
+    const markeds = posts.map((post) => {
+      const item = favoriteItems.filter(item => item.objectID === post.objectID);
+      if (item.length) {
+        return item[0] as Post;
+      }
+      return post;
     });
-    if (state.query !== '') {
-      navigate({ pathname: `/${state.query}/${page}` });
-    }
-    navigate({ pathname: `/${page}` });
+    
+    return markeds;
   };
 
   return (
@@ -63,7 +85,7 @@ const NewsScreen = () => {
       </SelectItem>
       
       { error && <p>{ error }</p>}
-      { isLoaded ? <SectionNews items={ data.hits }/> : <Loader /> }
+      { isLoaded ? <SectionNews items={ markFavoritePosts(data.hits) } onChange={handlerNews}/> : <Loader /> }
       
       <Pagination
         currentPage={state.page}

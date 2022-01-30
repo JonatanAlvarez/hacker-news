@@ -7,16 +7,25 @@ export type Post = {
   author: string,
   story_title: string,
   story_url: string,
-  created_at: string
+  created_at: string,
+  isFavorite?: boolean
 }
 
 type Props = {
-  items: Post[]
+  items: Post[],
+  onChange?: (item: Post) => void
 };
 
-const SectionNews = ({ items }: Props) => {
+const SectionNews = ({ items, onChange = () => {} }: Props) => {
   const openNewTab = (url: string) => {
     window.open(url, '_blank');
+  }
+
+  const handlerFavorite = (item: Post, isFavorite: boolean) => {
+    onChange({
+      ...item,
+      isFavorite
+    })
   }
 
   return (
@@ -30,7 +39,9 @@ const SectionNews = ({ items }: Props) => {
                 publishedDate={item.created_at}
                 author={item.author}
                 title={item.story_title}
+                isFavorite={item.isFavorite}
                 onClick={() => openNewTab(item.story_url)}
+                onFavorite={(e) => handlerFavorite(item, e)}
               />
             );
           }

@@ -7,9 +7,9 @@ export const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<DefaultLayout />}>
-          <Route index element={<NewsScreen key="v1" />} />
-          <Route path=":page" element={<NewsScreen key="v2" />} />
-          <Route path=":query/:page" element={<NewsScreen key="v3" />} />
+          <Route index element={<NewsScreen />} />
+          <Route path=":page" element={<NewsScreen />} />
+          <Route path=":query/:page" element={<NewsScreen key="query" />} />
           <Route path="my-faves" element={<></>} />
         </Route>
         <Route path="/*" element={<></>} />
