@@ -18,7 +18,7 @@ type Props = {
 
 const SectionNews = ({ items, onChange = () => {} }: Props) => {
   const openNewTab = (url: string) => {
-    if (url) window.open(url, '_blank');
+    window.open(url, '_blank');
   }
 
   const handlerFavorite = (item: Post, isFavorite: boolean) => {
@@ -32,10 +32,10 @@ const SectionNews = ({ items, onChange = () => {} }: Props) => {
     <section className="SectionNews">
       {
         items.map((item, i) => {
-          if (item.story_title) {
+          if (item.author && item.story_title && item.created_at && item.story_url) {
             return (
               <CardNews
-                key={item.objectID}
+                key={item.objectID + '-' + i}
                 publishedDate={item.created_at}
                 author={item.author}
                 title={item.story_title}

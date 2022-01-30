@@ -11,7 +11,12 @@ const DefaultLayout = () => {
         <h1 className="max-container">Hacker News</h1>
       </header>
       <nav>
-        <NavLink to={'/' + ( query ? '' : page) }>All</NavLink>
+        <NavLink
+          to={'/' + ( query ? '' : page) }
+          onClick={() => { localStorage.setItem('selectedFilter', '') }}
+        >
+          All
+        </NavLink>
         <NavLink to="/my-faves/1">My faves</NavLink>
       </nav>
       <main>

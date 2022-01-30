@@ -45,4 +45,8 @@
     align-items: center;
     background-color: rgba(96, 96, 96, 0.06);
   }
+
+  @media (max-width: 425px) {
+    height: 110px;
+  }
 }

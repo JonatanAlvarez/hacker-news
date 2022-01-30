@@ -5,6 +5,7 @@
 
   .controls {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
   }
@@ -15,6 +16,8 @@
   }
 
   .SelectItem {
+    margin: 5px 0;
+
     img {
       width: 24px;
       height: 24px;

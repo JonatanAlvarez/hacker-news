@@ -39,13 +39,25 @@ const NewsScreen = () => {
   useEffect(() => {
     setMounted(true);
     
+    const query = localStorage.getItem('selectedFilter');
+    if(query) {
+      setState((state) => ({
+        ...state,
+        query
+      }));
+    }
+
+    return () => {
+      setMounted(false);
+    }
+  }, []);
+
+  useEffect(() => {
     if (state.query !== '') {
       navigate({ pathname: `/${state.query}/${state.page}` });
     } else {
       navigate({ pathname: `/${state.page}` });
     }
-
-    return () => { setMounted(false) }
   }, [state, navigate]);
 
   useEffect(() => {
@@ -64,6 +76,7 @@ const NewsScreen = () => {
   }, [state]);
 
   const handlerSelect = (query: string) => {
+    localStorage.setItem('selectedFilter', query);
     setState({
       query,
       page: 1
