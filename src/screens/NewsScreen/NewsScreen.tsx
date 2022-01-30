@@ -53,7 +53,12 @@ const NewsScreen = () => {
   }, []);
 
   useEffect(() => {
-    if (state.query !== '') {
+    if (!Number.isInteger(state.page)) {
+      setState((state) => ({
+        ...state,
+        page: 1
+      }));
+    } else if (state.query !== '') {
       navigate({ pathname: `/${state.query}/${state.page}` });
     } else {
       navigate({ pathname: `/${state.page}` });
@@ -158,7 +163,7 @@ const NewsScreen = () => {
         </Toggle>
       </div>
 
-      { results.error && <p>{ JSON.stringify(results.error) }</p>}
+      { results.error && <p> Ups</p>}
 
       { results.isLoaded && mounted 
         ? <SectionNews items={ markFavoritePosts(results.hits) } onChange={handlerNews}/> 

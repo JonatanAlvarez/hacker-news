@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import DefaultLayout from "../layouts/DefaultLayout/DefaultLayout";
 import MyFaves from "../screens/MyFavesScreen/MyFavesScreen";
 import NewsScreen from "../screens/NewsScreen/NewsScreen";
+import NotFound from "../screens/NotFoundScreen/NotFoundScreen";
 
 export const AppRouter = () => {
   return (
@@ -12,8 +13,8 @@ export const AppRouter = () => {
           <Route path="my-faves/:page" element={<MyFaves />} />
           <Route path=":page" element={<NewsScreen />} />
           <Route path=":query/:page" element={<NewsScreen key="query" />} />
+          <Route path="/*" element={<NotFound />} />
         </Route>
-        <Route path="/*" element={<></>} />
       </Routes>
     </BrowserRouter>
   );
