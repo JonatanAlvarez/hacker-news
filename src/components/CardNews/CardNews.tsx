@@ -1,7 +1,6 @@
 import './CardNews.scss';
 
 import { ReactComponent as Time } from '../../assets/icon-time.svg';
-import { useState } from 'react';
 import ButtonFavorite from '../ButtonFavorite/ButtonFavorite';
 
 type Props = {
