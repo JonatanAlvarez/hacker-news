@@ -1,7 +1,9 @@
 import "./InfiniteScroll.scss";
 
 import { ReactComponent as Loader } from '../../assets/loader.svg';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import { ReactComponent as ArrowUP } from "../../assets/up-arrow.svg";
 
 type Props = {
   isLoading: boolean,
@@ -9,11 +11,18 @@ type Props = {
 }
 
 const InfiniteScroll = ({ isLoading= false, onClick= () => {} }: Props) => {
+  const [btnTop, setBtnTop] = useState(false);
 
   useEffect(() => {
     const detectBottomScroll = function() {
       if((window.innerHeight + window.scrollY) >= document.body.offsetHeight && !isLoading) {
         onClick();
+      }
+
+      if(document.body.offsetHeight > (window.innerHeight * 2) && window.scrollY > window.innerHeight) {
+        setBtnTop(true);
+      } else {
+        setBtnTop(false);
       }
     };
 
@@ -24,8 +33,20 @@ const InfiniteScroll = ({ isLoading= false, onClick= () => {} }: Props) => {
     }
   }, [isLoading, onClick]);
 
+  const renderButtonTop = () => {
+    if (btnTop) {
+      return <button className="btnTop" onClick={
+        () => {
+          window.scroll({top: 0, left: 0, behavior: 'smooth' });
+        }
+      }><ArrowUP /></button>
+    }
+    return <></>
+  };
+
   return (
     <div className="InfiniteScroll">
+      { renderButtonTop() }
       { isLoading
         ? <Loader />
         : <button onClick={onClick}>Load More</button>

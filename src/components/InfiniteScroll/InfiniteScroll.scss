@@ -29,6 +29,16 @@
     }
   }
 
+  .btnTop {
+    position: fixed;
+    bottom: 110px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    fill: #4e4e4e;
+  }
+
   > .loader {
     width: 75px;
     height: 75px;

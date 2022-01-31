@@ -47,6 +47,11 @@ const NewsScreen = () => {
       }));
     }
 
+    const toggleScroll = localStorage.getItem('toggleScroll');
+    if (toggleScroll !== null && toggleScroll !== undefined) {
+      setInfinityScroll(toggleScroll === 'true');
+    }
+
     return () => {
       setMounted(false);
     }
@@ -153,6 +158,7 @@ const NewsScreen = () => {
           isActive={infinityScroll}
           onClick={(e) => {
             setInfinityScroll(e);
+            localStorage.setItem('toggleScroll', e + '');
             setState({
               ...state,
               page: 1
