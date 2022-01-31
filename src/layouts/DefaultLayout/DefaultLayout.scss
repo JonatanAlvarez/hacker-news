@@ -36,6 +36,10 @@
       color: #606060;
       transition: all 0.3s;
 
+      &:hover {
+        background-color: #9dcfff;
+      }
+
       &.active {
         border-color: #1797ff;
         color: #1797ff;

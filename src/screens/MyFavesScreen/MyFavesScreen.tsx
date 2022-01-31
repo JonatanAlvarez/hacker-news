@@ -1,11 +1,13 @@
-import { useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import favoriteReducer, { init, FavoriteType } from "../../reducers/favoriteReducer";
 
-import './MyFavesScreen.scss';
-
 import SectionNews, { Post } from "../../components/SectionNews/SectionNews";
 import Pagination from "../../components/Pagination/Pagination";
+
+import './MyFavesScreen.scss';
+
+import hearts from "../../assets/beating-hearts.gif";
 
 const MyFaves = () => {
   const navigate = useNavigate();
@@ -32,16 +34,24 @@ const MyFaves = () => {
     }));
   };
 
-  const favoritePerPage = (favorites: Post[]) => {
-    return favorites.filter((_, index) => (
+  const favoritePerPage = useCallback(() => {
+    return favoriteItems.filter((_, index) => (
       index >= (state.page -1) * itemPerPage && index < (state.page * itemPerPage)
-    ))
-  };
+    )) as Post[]
+  }, [favoriteItems, state]);
 
   return (
     <div className="MyFaves max-container">
       
-      <SectionNews items={ favoritePerPage(favoriteItems as Post[]) } onChange={handlerNews}/>
+      { 
+        favoritePerPage().length > 0
+        ? <SectionNews items={ favoritePerPage() } onChange={handlerNews}/>
+        :
+          <>
+            <h2>You don't have favorites yet.<br />Add some to see them here whenever you want.</h2>
+            <img src={hearts} alt="" width="80" height="80" />
+          </>
+      }
       
       <Pagination
         currentPage={state.page}

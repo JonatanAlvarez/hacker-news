@@ -163,7 +163,13 @@ const NewsScreen = () => {
         </Toggle>
       </div>
 
-      { results.error && <p> Ups</p>}
+      { 
+        results.error && 
+        <>
+          <p>Oops, we're sorry. There was an error loading the news. =(</p>
+          <img src="" alt="" />
+        </>
+      }
 
       { results.isLoaded && mounted 
         ? <SectionNews items={ markFavoritePosts(results.hits) } onChange={handlerNews}/> 

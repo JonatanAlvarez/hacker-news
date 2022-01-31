@@ -6,6 +6,7 @@
   height: 90px;
   cursor: default;
   transition: opacity 0.3s;
+  animation: slideUp 1s;
 
   &:hover {
     opacity: 0.5;
@@ -48,5 +49,17 @@
 
   @media (max-width: 425px) {
     height: 110px;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }

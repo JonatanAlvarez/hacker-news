@@ -11,7 +11,7 @@ type Props = {
 };
 
 const Pagination =  ({ currentPage=1, pagesSize=10, pagesShow=10, total=0, onChange }: Props) => {
-  const numbersShow = pagesShow - 2;
+  const numbersShow = pagesShow - 4;
   const totalPages = Math.ceil(total / pagesSize);
 
   // renderElements - shows the controls according to the maximum number that can be displayed
@@ -21,6 +21,12 @@ const Pagination =  ({ currentPage=1, pagesSize=10, pagesShow=10, total=0, onCha
     
     if (start <= 0) {
       start = 1;
+    }
+
+    if (start >= 3) {
+      elements.push(
+        <button key="first" onClick={() => onChange(1)}>1</button>
+      )
     }
 
     if (start >= 2) {
@@ -44,6 +50,12 @@ const Pagination =  ({ currentPage=1, pagesSize=10, pagesShow=10, total=0, onCha
     if (start + numbersShow < totalPages) {
       elements.push(
         <button key="after" onClick={() => onChange(currentPage + (numbersShow / 2))}>...</button>
+      )
+    }
+
+    if (start + numbersShow <= totalPages) {
+      elements.push(
+        <button key="last" onClick={() => onChange(totalPages)}>{ totalPages }</button>
       )
     }
 

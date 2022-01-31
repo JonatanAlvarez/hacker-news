@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
 
-import ghost from "../../assets/Ghost.gif";
+import ghost from "../../assets/ghost.gif";
 
 const NotFound = () => (
   <>
-    <h1 style={{textAlign: 'center'}}><strong>404</strong><br />This is not the web page you are looking for</h1>
-    <img src={ghost} alt="" style={{display: 'block', margin: '100px auto',textAlign: 'center'}} />
+    <h2 style={{textAlign: 'center'}}><span style={{fontSize: '64px'}}>404</span><br /><br />This is not the web page you are looking for</h2>
+    <img src={ghost} alt="" width="64" height="64" style={{display: 'block', margin: '100px auto',textAlign: 'center'}} />
     <NavLink to="/" style={{display: 'block', margin: '100px 0',textAlign: 'center'}}>Go Home</NavLink>
   </>
 );

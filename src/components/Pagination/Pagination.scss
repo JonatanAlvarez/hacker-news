@@ -21,6 +21,11 @@
     font-weight: normal;
     transition: all 0.3s;
 
+    &:hover {
+      transform: scale(1.3);
+      background-color: #9dcfff;
+    }
+
     &.active {
       background-color: #1890ff;
       color: #fff;
