@@ -1,6 +1,6 @@
 import CardNews from "../../components/CardNews/CardNews";
 
-import './SectionNews.scss';
+import "./SectionNews.scss";
 
 export type Post = {
   objectID: string,
@@ -17,16 +17,17 @@ type Props = {
 };
 
 const SectionNews = ({ items, onChange = () => {} }: Props) => {
+  
   const openNewTab = (url: string) => {
     window.open(url, '_blank');
-  }
+  };
 
   const handlerFavorite = (item: Post, isFavorite: boolean) => {
     onChange({
       ...item,
       isFavorite
     })
-  }
+  };
 
   return (
     <section className="SectionNews">

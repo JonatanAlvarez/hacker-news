@@ -9,7 +9,6 @@ type Props = {
 }
 
 const InfiniteScroll = ({ isLoading= false, onClick= () => {} }: Props) => {
-  
 
   useEffect(() => {
     const detectBottomScroll = function() {

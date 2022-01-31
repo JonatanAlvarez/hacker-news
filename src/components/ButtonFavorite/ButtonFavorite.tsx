@@ -4,6 +4,7 @@ import './ButtonFavorite.scss';
 
 import { ReactComponent as Favorite } from '../../assets/icon-favorite.svg';
 import { ReactComponent as FavoriteActive } from '../../assets/icon-favorite-fill.svg';
+import { memo } from 'react';
 
 type Props = {
   active?: boolean,
@@ -24,4 +25,4 @@ const ButtonFavorite = ({active = false, onClick = () => {}}: Props) => (
   </button>
 );
 
-export default ButtonFavorite;
+export default memo(ButtonFavorite);
