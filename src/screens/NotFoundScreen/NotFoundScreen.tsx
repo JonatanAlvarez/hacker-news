@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-import ghost from "../../assets/ghost.gif";
+import ghost from "../../assets/mini-ghost.gif";
 
 const NotFound = () => (
   <>
